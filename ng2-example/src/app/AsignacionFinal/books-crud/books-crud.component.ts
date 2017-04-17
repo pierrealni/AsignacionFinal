@@ -48,13 +48,9 @@ export class BooksCrudComponent implements OnInit {
 	}
 
 	edit(editionBook: Books) {
-		console.log(this.bookForm);
 		this.addBook = true;
 		Object.keys(editionBook).forEach(name => {
-			console.log(name);
-			console.log(editionBook[name]);
 			if (this.bookForm.controls[name]) {
-				console.log("heyyyy");
 				this.bookForm.controls[name].patchValue(editionBook[name]);
 			}
 		});
