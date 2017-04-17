@@ -20,6 +20,13 @@ export class BooksCrudService {
 	}
 
 	//UPDATE
+	updateBook(book: Books): any{
+		return this.http.put('http://localhost:3000/books',book).map(res => res.json() as Books[]);
+	}
 
 	//DELETE
+	deleteBook(book: Books): any{
+		return this.http.delete(`http://localhost:3000/books/${book.id}`).map(res => res.json());
+	}
 }
+

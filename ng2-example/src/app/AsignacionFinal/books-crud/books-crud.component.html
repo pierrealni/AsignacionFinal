@@ -1,5 +1,5 @@
-
-<h3 style="text-align:center; margin: 20px">Books List</h3>
+<h3 style="text-align:center; margin: 20px">
+    Books List</h3>
 
 
 <table class="table table-striped">
@@ -23,15 +23,62 @@
             <td>{{book.rating}}</td>
             <td>{{book.price}}</td>
             <td>
-                <a href="#">
-                    <span class="glyphicon glyphicon-pencil"></span>
-                </a>
-                <a href="#">
-                    <span class="glyphicon glyphicon-remove"></span>
-                </a>
+                    <span (click)='edit(book)' class="action">&#x270f;</span>
+                    <span (click)='delete(book)' class="action">X</span>
             </td>
 
         </tr>
 
     </tbody>
 </table>
+
+<button type="button" class="btn btn-primary" (click)='addBook = !addBook'>{{ addBook? 'Hide Form' : 'Add Book' }}</button>
+
+<form *ngIf='addBook' novalidate (ngSubmit)="onSubmit(bookForm)" [formGroup]="bookForm" id="newBookForm">
+    <label>
+        <span>Title</span>
+        <input type="text" placeholder="Book Title" formControlName="title">
+      </label>
+    <div class="error" *ngIf="bookForm.get('title').touched && bookForm.get('title').hasError('required')">
+        Field required
+    </div>
+    <div class="error" *ngIf="bookForm.get('title').touched && bookForm.get('title').hasError('minlength')">
+        Minimum of 5 characters
+    </div>
+
+    <label>
+        <span>Author</span>
+        <input type="text" placeholder="Author" formControlName="author">
+      </label>
+    <div class="error" *ngIf="bookForm.get('author').touched && bookForm.get('author').hasError('required')">
+        Field required
+    </div>
+    <div class="error" *ngIf="bookForm.get('author').touched && bookForm.get('author').hasError('minlength')">
+        Minimum of 5 characters
+    </div>
+
+    <label>
+        <span>Year Published</span>
+        <input type="text" placeholder="Year Published" formControlName="year_published">
+      </label>
+    <div class="error" *ngIf="bookForm.get('year_published').touched && bookForm.get('year_published').hasError('required')">
+        Field required
+    </div>
+    <div class="error" *ngIf="bookForm.get('year_published').touched && bookForm.get('year_published').hasError('minlength')">
+        Minimum of 4 characters
+    </div>
+
+    <label>
+        <span>Price</span>
+        <input type="text" placeholder="Price" formControlName="price">
+      </label>
+    <div class="error" *ngIf="bookForm.get('price').touched && bookForm.get('price').hasError('required')">
+        Field required
+    </div>
+    <div class="error" *ngIf="bookForm.get('price').touched && bookForm.get('price').hasError('minlength')">
+        Minimum of 2 characters
+    </div>
+
+    <button type="submit" [disabled]="bookForm.invalid" class="btn btn-primary">Submit</button>
+</form>
+
