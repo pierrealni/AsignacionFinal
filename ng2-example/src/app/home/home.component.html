@@ -1,0 +1,10 @@
+<div>
+  <h2>Home Works!</h2>  
+  <p-calendar name="calendarDemo" [(ngModel)]="date3" ngDefaultControl [showIcon]="true"></p-calendar> <span style="margin-left:35px">{{date3|date}}</span>
+
+  <br>
+   <span  class="fieldname">Your balance is</span>: {{ getBalance(balanceAmount) }}
+  <br>
+   <input type="text" name="demoBalance" [(ngModel)]="balanceAmount" myCurrencyFormatter  />
+
+</div>

@@ -1,0 +1,2 @@
+<book-filters (onUpdateFilters)="filters=$event"></book-filters>
+<books *ngIf="!!filters.sortBy" [sortBy]="filters.sortBy"></books>
