@@ -21,7 +21,7 @@ export class BooksCrudService {
 
 	//UPDATE
 	updateBook(book: Books): any{
-		return this.http.put('http://localhost:3000/books',book).map(res => res.json() as Books[]);
+		return this.http.put(`http://localhost:3000/books/${book.id}`,book).map(res => res.json() as Books[]);
 	}
 
 	//DELETE

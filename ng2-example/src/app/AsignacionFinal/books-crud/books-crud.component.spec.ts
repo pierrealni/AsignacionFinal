@@ -5,7 +5,7 @@ import 'rxjs/Rx';
 
 import { BooksCrudComponent } from './books-crud.component';
 import { BooksCrudService } from './shared/books-crud.service';
-import { BooksCrud } from './shared/books-crud.model';
+//import { BooksCrud } from './shared/books-crud.model';
 
 describe('a books-crud component', () => {
 	let component: BooksCrudComponent;

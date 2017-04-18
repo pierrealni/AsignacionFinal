@@ -23,8 +23,8 @@
             <td>{{book.rating}}</td>
             <td>{{book.price}}</td>
             <td>
-                    <span (click)='edit(book)' class="action">&#x270f;</span>
-                    <span (click)='delete(book)' class="action">X</span>
+                <span (click)='edit(book)' class="action">&#x270f;</span>
+                <span (click)='delete(book)' class="action">X</span>
             </td>
 
         </tr>
@@ -32,9 +32,21 @@
     </tbody>
 </table>
 
-<button type="button" class="btn btn-primary" (click)='addBook = !addBook'>{{ addBook? 'Hide Form' : 'Add Book' }}</button>
+<button type="button" class="btn btn-primary" (click)="add()">Add Book</button>
 
-<form *ngIf='addBook' novalidate (ngSubmit)="onSubmit(bookForm)" [formGroup]="bookForm" id="newBookForm">
+<form *ngIf='action !== undefined' novalidate (ngSubmit)="onSubmit(bookForm)" [formGroup]="bookForm" id="newBookForm">
+
+    <div [ngSwitch]="action">
+        <div *ngSwitchCase="'edit'">
+            <h3>Edit Book</h3>
+            <label>
+                <span>ID</span>
+                <input type="text" disabled="true" formControlName="id">
+            </label>
+        </div>
+        <h3 *ngSwitchCase="'add'"> Add New Book </h3>
+    </div>
+
     <label>
         <span>Title</span>
         <input type="text" placeholder="Book Title" formControlName="title">
@@ -64,9 +76,21 @@
     <div class="error" *ngIf="bookForm.get('year_published').touched && bookForm.get('year_published').hasError('required')">
         Field required
     </div>
-    <div class="error" *ngIf="bookForm.get('year_published').touched && bookForm.get('year_published').hasError('minlength')">
-        Minimum of 4 characters
+    <div class="error" *ngIf="bookForm.get('year_published').touched && bookForm.get('year_published').hasError('pattern')">
+        Must be a year
     </div>
+
+    <label>
+        <span>Rating</span>
+        <input type="text" placeholder="Rating" formControlName="rating">
+      </label>
+    <div class="error" *ngIf="bookForm.get('rating').touched && bookForm.get('rating').hasError('required')">
+        Field required
+    </div>
+    <div class="error" *ngIf="bookForm.get('rating').touched && bookForm.get('rating').hasError('pattern')">
+        Must be a correct number
+    </div>
+
 
     <label>
         <span>Price</span>
@@ -75,10 +99,18 @@
     <div class="error" *ngIf="bookForm.get('price').touched && bookForm.get('price').hasError('required')">
         Field required
     </div>
-    <div class="error" *ngIf="bookForm.get('price').touched && bookForm.get('price').hasError('minlength')">
-        Minimum of 2 characters
+    <div class="error" *ngIf="bookForm.get('price').touched && bookForm.get('price').hasError('pattern')">
+        Must be a correct number
     </div>
 
-    <button type="submit" [disabled]="bookForm.invalid" class="btn btn-primary">Submit</button>
-</form>
 
+    <div class="row">
+        <div class="col-6" style="text-align: center">
+            <button type="submit" [disabled]="bookForm.invalid" class="btn btn-primary">Submit</button>
+        </div>
+        <div class="col-6" style="text-align: center">
+            <button type="reset" class="btn btn-secondary" (click)="action= undefined">Cancel</button>
+        </div>
+    </div>
+
+</form>
