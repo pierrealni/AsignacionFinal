@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
-import { Books } from '../../books/shared/books.model';
+import { Book } from './shared/book.model';
 import { BooksCrudService } from './shared/books-crud.service';
 
 @Component({
@@ -12,7 +12,7 @@ import { BooksCrudService } from './shared/books-crud.service';
 })
 
 export class BooksCrudComponent implements OnInit {
-	books: Books[] = [];
+	books: Book[] = [];
 	bookForm: FormGroup;
 	action: string = undefined;
 
@@ -33,7 +33,7 @@ export class BooksCrudComponent implements OnInit {
 		});
 	}
 
-	onSubmit({ value, valid }: { value: Books, valid: boolean }) {
+	onSubmit({ value, valid }: { value: Book, valid: boolean }) {
 		console.log(valid);
 		switch (this.action) {
 			case 'add':
@@ -53,14 +53,14 @@ export class BooksCrudComponent implements OnInit {
 		//console.log(value, valid);
 	}
 
-	delete(book: Books) {
+	delete(book: Book) {
 		this.booksCrudService.deleteBook(book).subscribe((res) => {
 			console.log(JSON.stringify(res));
 			this.reload();
 		});
 	}
 
-	edit(editionBook: Books) {
+	edit(editionBook: Book) {
 		this.action = 'edit';
 		Object.keys(editionBook).forEach(name => {
 			if (this.bookForm.controls[name]) {

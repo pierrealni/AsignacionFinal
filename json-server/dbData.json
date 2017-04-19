@@ -26,6 +26,14 @@
       "rating": 5.2,
       "price": 10,
       "imgUrl": "https://images-na.ssl-images-amazon.com/images/I/51TXjVsADfL._SY346_.jpg"
+    },
+    {
+      "id": 104,
+      "title": "E2E Title",
+      "author": "E2E Author",
+      "year_published": "2014",
+      "rating": "4.2",
+      "price": "25"
     }
   ],
   "sortOptions": [

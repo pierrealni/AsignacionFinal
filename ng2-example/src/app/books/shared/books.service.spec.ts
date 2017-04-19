@@ -9,7 +9,7 @@ import { BookFilter } from '../../book-filters/shared/book-filters.model';
 import 'rxjs/add/operator/map';
 
 
-fdescribe('Books Service Test', () => {
+describe('Books Service Test', () => {
     beforeEach(() => {
         TestBed.configureTestingModule({
             declarations: [],

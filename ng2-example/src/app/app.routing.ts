@@ -10,11 +10,11 @@ import { RegisterUserComponent} from './register-user/register-user.component';
 import { BooksCrudComponent} from './AsignacionFinal/books-crud/books-crud.component';
 
 const routes: Routes = [
-  { path: '', component: BooksManagerComponent },
+  { path: 'booksManager', component: BooksManagerComponent },
   { path: 'about', component: AboutComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterUserComponent },
-  { path: 'books', component: BooksCrudComponent }
+  { path: '', component: BooksCrudComponent }
   /*{
     path: 'books',
     component: RouteComponent,

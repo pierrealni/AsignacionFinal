@@ -1,5 +1,4 @@
-<h3 style="text-align:center; margin: 20px">
-    Books List</h3>
+<h2 style="text-align:center; margin: 20px">Books List</h2>
 
 
 <table class="table table-striped">
@@ -32,7 +31,7 @@
     </tbody>
 </table>
 
-<button type="button" class="btn btn-primary" (click)="add()">Add Book</button>
+<button type="button" class="btn btn-primary" (click)="add()" id="addBook">Add Book</button>
 
 <form *ngIf='action !== undefined' novalidate (ngSubmit)="onSubmit(bookForm)" [formGroup]="bookForm" id="newBookForm">
 
@@ -49,7 +48,7 @@
 
     <label>
         <span>Title</span>
-        <input type="text" placeholder="Book Title" formControlName="title">
+        <input type="text" placeholder="Book Title" formControlName="title" id="title">
       </label>
     <div class="error" *ngIf="bookForm.get('title').touched && bookForm.get('title').hasError('required')">
         Field required
@@ -60,7 +59,7 @@
 
     <label>
         <span>Author</span>
-        <input type="text" placeholder="Author" formControlName="author">
+        <input type="text" placeholder="Author" formControlName="author" id="author">
       </label>
     <div class="error" *ngIf="bookForm.get('author').touched && bookForm.get('author').hasError('required')">
         Field required
@@ -71,18 +70,18 @@
 
     <label>
         <span>Year Published</span>
-        <input type="text" placeholder="Year Published" formControlName="year_published">
+        <input type="text" placeholder="Year Published" formControlName="year_published" id="year_published">
       </label>
     <div class="error" *ngIf="bookForm.get('year_published').touched && bookForm.get('year_published').hasError('required')">
         Field required
     </div>
-    <div class="error" *ngIf="bookForm.get('year_published').touched && bookForm.get('year_published').hasError('pattern')">
+    <div class="error" id="mustBeAYear" *ngIf="bookForm.get('year_published').touched && bookForm.get('year_published').hasError('pattern')">
         Must be a year
     </div>
 
     <label>
         <span>Rating</span>
-        <input type="text" placeholder="Rating" formControlName="rating">
+        <input type="text" placeholder="Rating" formControlName="rating" id="rating">
       </label>
     <div class="error" *ngIf="bookForm.get('rating').touched && bookForm.get('rating').hasError('required')">
         Field required
@@ -94,7 +93,7 @@
 
     <label>
         <span>Price</span>
-        <input type="text" placeholder="Price" formControlName="price">
+        <input type="text" placeholder="Price" formControlName="price" id="price">
       </label>
     <div class="error" *ngIf="bookForm.get('price').touched && bookForm.get('price').hasError('required')">
         Field required
@@ -106,7 +105,7 @@
 
     <div class="row">
         <div class="col-6" style="text-align: center">
-            <button type="submit" [disabled]="bookForm.invalid" class="btn btn-primary">Submit</button>
+            <button type="submit" [disabled]="bookForm.invalid" class="btn btn-primary" id="submit">Submit</button>
         </div>
         <div class="col-6" style="text-align: center">
             <button type="reset" class="btn btn-secondary" (click)="action= undefined">Cancel</button>
